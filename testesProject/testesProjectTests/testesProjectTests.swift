@@ -11,9 +11,12 @@ import XCTest
 
 class testesProjectTests: XCTestCase {
     
+    var vc = ViewController()
+    
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        vc = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
     }
     
     override func tearDown() {
@@ -21,16 +24,19 @@ class testesProjectTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testGetName() {
+        let _ = vc.view // Com isso você garante que passou pelo viewDidLoad e etc
+        
+        let name = vc.getName(name: "João")
+        XCTAssertTrue(name == "Nome: João")
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func testGetAge(){
+        let _ = vc.view // Com isso você garante que passou pelo viewDidLoad e etc
+        
+        let age = vc.getAge(age: 12)
+        XCTAssertTrue(age == "Idade: 12 anos")
     }
+    
     
 }
